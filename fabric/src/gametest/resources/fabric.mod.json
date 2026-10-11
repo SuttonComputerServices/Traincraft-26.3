@@ -4,10 +4,13 @@
   "version": "1.0.0",
   "name": "Traincraft GameTests",
   "environment": "*",
-  "depends": { "traincraft": "*" },
+  "depends": {
+    "traincraft": "*"
+  },
   "entrypoints": {
     "fabric-gametest": [
-      "traincraft.fabric.RegistrationGameTest"
+      "traincraft.fabric.RegistrationGameTest",
+      "traincraft.fabric.AssetGameTest"
     ]
   }
 }

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "traincraft:blocks/assembly_1_top",
+    "down": "traincraft:blocks/assembly_1_bottom",
+    "north": "traincraft:blocks/assembly_1_front",
+    "east": "traincraft:blocks/assembly_1_side",
+    "west": "traincraft:blocks/assembly_1_side",
+    "south": "traincraft:blocks/assembly_1_side",
+    "particle": "traincraft:blocks/assembly_1_bottom"
+  }
+}
