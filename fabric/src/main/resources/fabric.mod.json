@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "traincraft",
+  "version": "${version}",
+  "name": "Traincraft",
+  "description": "Trains for Minecraft.",
+  "license": "LGPL-3.0-only",
+  "environment": "*",
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "26.3"
+  }
+}
