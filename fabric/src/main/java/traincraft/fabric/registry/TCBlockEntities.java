@@ -21,13 +21,21 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import traincraft.fabric.blockentity.ItemBlockEntity;
+import traincraft.fabric.blockentity.WindMillBlockEntity;
 import traincraft.fabric.gui.TCBlockMenu;
 import traincraft.fabric.gui.TCBlockMenu.Layout;
 
 public final class TCBlockEntities {
 	private static final Map<String, BlockEntityType<ItemBlockEntity>> TYPES = new HashMap<>();
 
+	private static BlockEntityType<WindMillBlockEntity> windMill;
+
 	private TCBlockEntities() {}
+
+	public static BlockEntityType<WindMillBlockEntity> windMill() {
+		if (windMill == null) throw new IllegalStateException("Block entity not registered: wind_mill");
+		return windMill;
+	}
 
 	public static BlockEntityType<ItemBlockEntity> type(String name) {
 		BlockEntityType<ItemBlockEntity> t = TYPES.get(name);
@@ -41,6 +49,8 @@ public final class TCBlockEntities {
 		register(TCBlockMenu.HEARTH_FURNACE, "hearth_furnace");
 		register(TCBlockMenu.ASSEMBLY_TABLE, "assembly_table_1", "assembly_table_2", "assembly_table_3");
 		register(TCBlockMenu.TRAIN_WORKBENCH, "train_workbench");
+		windMill = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Identifier.fromNamespaceAndPath("traincraft", "wind_mill"),
+			new BlockEntityType<WindMillBlockEntity>(WindMillBlockEntity::new, Set.of(TCBlocks.get("wind_mill"))));
 	}
 
 	private static void register(Layout layout, String... blockPaths) {

@@ -24,6 +24,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import traincraft.common.registry.RegistryNames;
 import traincraft.fabric.block.ContainerBlock;
 import traincraft.fabric.block.FacingBlock;
+import traincraft.fabric.block.SwitchStandBlock;
+import traincraft.fabric.block.WindMillBlock;
 import traincraft.fabric.gui.TCBlockMenu;
 
 public final class TCBlocks {
@@ -67,6 +69,8 @@ public final class TCBlocks {
 			default -> null;
 		};
 		if (layout != null) return new ContainerBlock(p, layout);
+		if (path.equals("wind_mill")) return new WindMillBlock(p);
+		if (path.equals("switch_stand")) return new SwitchStandBlock(p);
 		return FACING.contains(path) ? new FacingBlock(p) : new Block(p);
 	}
 

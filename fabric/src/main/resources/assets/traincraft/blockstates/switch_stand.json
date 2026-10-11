@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "traincraft:blocks/switch_stand"
+    "facing=north,active=false": {
+      "model": "traincraft:block/switch_stand"
     },
-    "facing=south": {
-      "model": "traincraft:blocks/switch_stand",
+    "facing=north,active=true": {
+      "model": "traincraft:block/switch_stand"
+    },
+    "facing=south,active=false": {
+      "model": "traincraft:block/switch_stand",
       "y": 180
     },
-    "facing=west": {
-      "model": "traincraft:blocks/switch_stand",
+    "facing=south,active=true": {
+      "model": "traincraft:block/switch_stand",
+      "y": 180
+    },
+    "facing=west,active=false": {
+      "model": "traincraft:block/switch_stand",
       "y": 270
     },
-    "facing=east": {
-      "model": "traincraft:blocks/switch_stand",
+    "facing=west,active=true": {
+      "model": "traincraft:block/switch_stand",
+      "y": 270
+    },
+    "facing=east,active=false": {
+      "model": "traincraft:block/switch_stand",
+      "y": 90
+    },
+    "facing=east,active=true": {
+      "model": "traincraft:block/switch_stand",
       "y": 90
     }
   }

@@ -13,6 +13,7 @@ package traincraft.fabric;
 import java.util.Optional;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -27,6 +28,7 @@ import traincraft.fabric.gui.SteamSmallMenu;
 import traincraft.fabric.gui.TCBlockMenu;
 import traincraft.fabric.registry.TCEntities;
 import traincraft.fabric.registry.TCBlockEntities;
+import traincraft.fabric.wind.WindService;
 import traincraft.fabric.registry.TCBlocks;
 import traincraft.fabric.registry.TCItems;
 
@@ -36,6 +38,7 @@ public class TraincraftMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ServerLifecycleEvents.SERVER_STARTING.register(s -> server = s);
+		ServerTickEvents.END_SERVER_TICK.register(WindService::tick);
 		ServerLifecycleEvents.SERVER_STOPPED.register(s -> server = null);
 		TCBlocks.register();
 		TCItems.register();
