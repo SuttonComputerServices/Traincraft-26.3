@@ -48,9 +48,13 @@ public class FacingGameTest {
 		try (var in = FacingGameTest.class.getClassLoader().getResourceAsStream("assets/traincraft/blockstates/" + id + ".json")) {
 			if (in == null) return false;
 			var variants = JsonParser.parseReader(new InputStreamReader(in)).getAsJsonObject().getAsJsonObject("variants");
-			for (String d : new String[] {"north", "south", "west", "east"})
-				if (!variants.has("facing=" + d)) return false;
-			return variants.size() == 4;
+			// Containers add lit=true/false to each facing, so 4 or 8 variants are valid.
+			for (String d : new String[] {"north", "south", "west", "east"}) {
+				boolean found = false;
+				for (String key : variants.keySet()) found |= key.startsWith("facing=" + d);
+				if (!found) return false;
+			}
+			return variants.size() == 4 || variants.size() == 8;
 		} catch (IOException e) {
 			return false;
 		}

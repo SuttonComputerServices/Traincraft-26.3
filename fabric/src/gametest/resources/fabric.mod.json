@@ -13,7 +13,8 @@
       "traincraft.fabric.AssetGameTest",
       "traincraft.fabric.SimpleBlockGameTest",
       "traincraft.fabric.FacingGameTest",
-      "traincraft.fabric.BlockEntityGameTest"
+      "traincraft.fabric.BlockEntityGameTest",
+      "traincraft.fabric.LitGameTest"
     ]
   }
 }

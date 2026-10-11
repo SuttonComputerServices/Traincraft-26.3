@@ -35,7 +35,12 @@ import traincraft.fabric.blockentity.ItemBlockEntity;
 public class TCBlockMenu extends AbstractContainerMenu {
 	public record SlotSpec(int index, int x, int y, boolean fuel) {}
 
-	public record Layout(String name, int size, int playerY, List<SlotSpec> slots) {}
+	public record Layout(String name, int size, int playerY, List<SlotSpec> slots) {
+		/** Index of the fuel slot, or -1 when the block burns nothing. */
+		public int fuelIndex() {
+			return slots.stream().filter(SlotSpec::fuel).mapToInt(SlotSpec::index).findFirst().orElse(-1);
+		}
+	}
 
 	public static final Layout DISTILLERY = new Layout("distillery", 5, 84, List.of(
 		new SlotSpec(0, 56, 17, false), new SlotSpec(1, 56, 53, true), new SlotSpec(2, 116, 60, false),

@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "traincraft:blocks/train_workbench"
+    "facing=north,lit=false": {
+      "model": "traincraft:block/train_workbench"
     },
-    "facing=south": {
-      "model": "traincraft:blocks/train_workbench",
+    "facing=north,lit=true": {
+      "model": "traincraft:block/train_workbench"
+    },
+    "facing=south,lit=false": {
+      "model": "traincraft:block/train_workbench",
       "y": 180
     },
-    "facing=west": {
-      "model": "traincraft:blocks/train_workbench",
+    "facing=south,lit=true": {
+      "model": "traincraft:block/train_workbench",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "traincraft:block/train_workbench",
       "y": 270
     },
-    "facing=east": {
-      "model": "traincraft:blocks/train_workbench",
+    "facing=west,lit=true": {
+      "model": "traincraft:block/train_workbench",
+      "y": 270
+    },
+    "facing=east,lit=false": {
+      "model": "traincraft:block/train_workbench",
+      "y": 90
+    },
+    "facing=east,lit=true": {
+      "model": "traincraft:block/train_workbench",
       "y": 90
     }
   }

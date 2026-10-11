@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "traincraft:blocks/hearth_furnace"
+    "facing=north,lit=false": {
+      "model": "traincraft:block/hearth_furnace"
     },
-    "facing=south": {
-      "model": "traincraft:blocks/hearth_furnace",
+    "facing=north,lit=true": {
+      "model": "traincraft:block/hearth_furnace_lit"
+    },
+    "facing=south,lit=false": {
+      "model": "traincraft:block/hearth_furnace",
       "y": 180
     },
-    "facing=west": {
-      "model": "traincraft:blocks/hearth_furnace",
+    "facing=south,lit=true": {
+      "model": "traincraft:block/hearth_furnace_lit",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "traincraft:block/hearth_furnace",
       "y": 270
     },
-    "facing=east": {
-      "model": "traincraft:blocks/hearth_furnace",
+    "facing=west,lit=true": {
+      "model": "traincraft:block/hearth_furnace_lit",
+      "y": 270
+    },
+    "facing=east,lit=false": {
+      "model": "traincraft:block/hearth_furnace",
+      "y": 90
+    },
+    "facing=east,lit=true": {
+      "model": "traincraft:block/hearth_furnace_lit",
       "y": 90
     }
   }

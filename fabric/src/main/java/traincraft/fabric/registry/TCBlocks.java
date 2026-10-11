@@ -20,6 +20,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.BlockState;
 import traincraft.common.registry.RegistryNames;
 import traincraft.fabric.block.ContainerBlock;
 import traincraft.fabric.block.FacingBlock;
@@ -41,10 +42,15 @@ public final class TCBlocks {
 	public static final Set<String> FACING = Set.of(
 		"assembly_table_1", "assembly_table_2", "assembly_table_3", "bridge_pillar", "generator_diesel", "distillery", "hearth_furnace", "stopper", "switch_stand", "train_workbench", "water_wheel", "wind_mill");
 
+	/** Lit furnaces and distilleries glow at 12 (Content.md 0 or 12; 1.12 distillery 0.8 × 15). */
+	private static int litLight(BlockState s) {
+		return s.getValue(ContainerBlock.LIT) ? 12 : 0;
+	}
+
 	private static Properties props(String path) {
 		return switch (path) {
-			case "assembly_table_1", "assembly_table_2", "assembly_table_3", "bridge_pillar", "distillery",
-				"hearth_furnace" -> Properties.of().strength(3.5f);
+			case "assembly_table_1", "assembly_table_2", "assembly_table_3", "bridge_pillar" -> Properties.of().strength(3.5f);
+			case "distillery", "hearth_furnace" -> Properties.of().strength(3.5f).lightLevel(TCBlocks::litLight);
 			case "copper_ore", "petrol_ore" -> Properties.of().strength(3.0f, 5.0f);
 			case "ore_oil_sand" -> Properties.of().strength(3.0f);
 			case "lantern" -> Properties.of().strength(1.7f).lightLevel(s -> 14); // 0.98 * 15, rounded down

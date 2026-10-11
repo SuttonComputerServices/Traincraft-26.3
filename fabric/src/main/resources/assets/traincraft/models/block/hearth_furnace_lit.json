@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "traincraft:blocks/hearth_furnace_bottom",
+    "up": "traincraft:blocks/hearth_furnace_on_top",
+    "down": "traincraft:blocks/hearth_furnace_bottom",
+    "north": "traincraft:blocks/hearth_furnace_on_front",
+    "east": "traincraft:blocks/hearth_furnace_side",
+    "west": "traincraft:blocks/hearth_furnace_side",
+    "south": "traincraft:blocks/hearth_furnace_side"
+  }
+}

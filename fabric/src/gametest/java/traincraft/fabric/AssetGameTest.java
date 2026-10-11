@@ -27,6 +27,8 @@ public class AssetGameTest {
 			require(helper, "items/" + id + ".json", "item definition " + id);
 			require(helper, "blockstates/" + id + ".json", "blockstate " + id);
 			checkTextures(helper, "models/block/" + id + ".json");
+			if (AssetGameTest.class.getClassLoader().getResource("assets/traincraft/models/block/" + id + "_lit.json") != null)
+				checkTextures(helper, "models/block/" + id + "_lit.json");
 		}
 		for (String id : RegistryNames.ITEMS) {
 			require(helper, "items/" + id + ".json", "item definition " + id);
