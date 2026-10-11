@@ -37,7 +37,7 @@ Automated checks (run at HEAD):
 | 9 | Armor, canister, wrench, connector, guide | VERIFIED (armor) / NOT VERIFIED (canister) | ArmorGameTest (2): slots and equip, texture assets present. Canister fill and empty: **NOT VERIFIED, plan gap** (no fluid system). Composite suit effects not ported. |
 | 10 | Machines | VERIFIED (wind mill, switch) / NOT VERIFIED (generator) | MachineGameTest (2); WindStateTest. Generator burning diesel: **NOT VERIFIED, plan gap**. Switch stand toggle is invented (no 1.12 source). |
 | 11 | Sounds, advancements, worldgen | VERIFIED (registry, load) / NOT VERIFIED (in-game sound) | ContentGameTest (3): sounds registered, ore placed features load, 14 advancements load. 14 of 37 1.7.10 achievements ported: **PLAN GAP** against "count matches the list". |
-| 14 | Acceptance and final review | this document + final review (see ledger) | |
+| 14 | Acceptance and final review | VERIFIED (automated) | Final review found 4 Critical and 3 Important issues; all fixed and covered by tests where a test is possible (suite 26/26). Items not testable without a client: block screens, biome ore spawn, dye-free armor look — MANUAL. Control scheme for the locomotive was reversed (plain mounts, sneak opens GUI). |
 
 ## Known gaps (need a decision)
 
@@ -55,7 +55,7 @@ Automated checks (run at HEAD):
 - Facing blocks: front texture faces the placing player.
 - Furnace and distillery: lit textures while burning, light level 12, off after fuel runs out.
 - Assembly grid (y 128–182) does not look wrong over the player inventory row (y 174).
-- Steam locomotive: sneak-click mounts, plain click opens the menu, model orientation, seat position.
+- Steam locomotive: plain click mounts, sneak-click opens the menu (scheme changed from the plan; see ledger), model orientation, seat position.
 - Armor: worn pieces show the right layers and colors (tint not ported).
 - Ores generate in new chunks.
 - Sounds play (once a block or entity calls them).
