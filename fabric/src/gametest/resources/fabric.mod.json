@@ -10,7 +10,8 @@
   "entrypoints": {
     "fabric-gametest": [
       "traincraft.fabric.RegistrationGameTest",
-      "traincraft.fabric.AssetGameTest"
+      "traincraft.fabric.AssetGameTest",
+      "traincraft.fabric.SimpleBlockGameTest"
     ]
   }
 }
