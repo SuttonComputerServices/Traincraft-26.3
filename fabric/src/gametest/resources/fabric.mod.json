@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "traincraft-gametest",
+  "version": "1.0.0",
+  "name": "Traincraft GameTests",
+  "environment": "*",
+  "depends": { "traincraft": "*" },
+  "entrypoints": {
+    "fabric-gametest": [
+      "traincraft.fabric.RegistrationGameTest"
+    ]
+  }
+}
