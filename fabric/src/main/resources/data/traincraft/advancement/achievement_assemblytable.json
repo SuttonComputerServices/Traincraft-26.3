@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:story/root",
+  "display": {
+    "icon": {
+      "id": "traincraft:assembly_table_1"
+    },
+    "title": {
+      "text": "Assembly table"
+    },
+    "description": {
+      "text": "Obtain assembly table"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "traincraft:assembly_table_1"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ]
+}

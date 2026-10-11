@@ -27,6 +27,7 @@ import traincraft.common.fuel.FuelRules;
 import traincraft.fabric.gui.SteamSmallMenu;
 import traincraft.fabric.gui.TCBlockMenu;
 import traincraft.fabric.registry.TCEntities;
+import traincraft.fabric.registry.TCSounds;
 import traincraft.fabric.registry.TCBlockEntities;
 import traincraft.fabric.wind.WindService;
 import traincraft.fabric.registry.TCBlocks;
@@ -45,6 +46,7 @@ public class TraincraftMod implements ModInitializer {
 		TCBlockEntities.register();
 		TCBlockMenu.register();
 		TCEntities.register();
+		TCSounds.register();
 		SteamSmallMenu.register();
 		FuelRules.setVanillaLookup(TraincraftMod::vanillaBurnTicks);
 	}

@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:story/root",
+  "display": {
+    "icon": {
+      "id": "traincraft:generator_diesel"
+    },
+    "title": {
+      "text": "Diesel generator"
+    },
+    "description": {
+      "text": "Obtain diesel generator"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "traincraft:generator_diesel"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ]
+}

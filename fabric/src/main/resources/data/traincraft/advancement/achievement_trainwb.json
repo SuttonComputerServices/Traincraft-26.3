@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:story/root",
+  "display": {
+    "icon": {
+      "id": "traincraft:train_workbench"
+    },
+    "title": {
+      "text": "Train workbench"
+    },
+    "description": {
+      "text": "Obtain train workbench"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "traincraft:train_workbench"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ]
+}

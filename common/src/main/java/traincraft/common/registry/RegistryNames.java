@@ -40,4 +40,42 @@ public final class RegistryNames {
 	);
 
 	public static final List<String> ENTITIES = List.of("locomotive_steam_small");
+
+	/** Sound events; every name must be a key in assets/traincraft/sounds.json. */
+	public static final List<String> SOUNDS = List.of(
+		"742_horn",
+		"742_motor",
+		"742_motor_fast",
+		"742_motor_slow",
+		"adler_run",
+		"adler_whistle",
+		"american_steam_horn",
+		"british_two_tone",
+		"chme3_horn",
+		"chme3_idle",
+		"chme3_run",
+		"class62_horn",
+		"eu07_horn",
+		"german_steam_horn",
+		"gp40-2_horn",
+		"gp_horn",
+		"high_speed_horn",
+		"mg_horn",
+		"mg_idle",
+		"mg_run",
+		"mtc_overspeed",
+		"mtc_speedchange",
+		"sd70_horn",
+		"shay_horn",
+		"shunter_horn",
+		"steam_horn",
+		"steam_idle",
+		"steam_run",
+		"subway_horn",
+		"tram_horn",
+		"v60_horn",
+		"vl10_horn",
+		"vl10_idle",
+		"vl10_run"
+	);
 }

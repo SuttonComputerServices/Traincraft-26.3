@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:story/root",
+  "display": {
+    "icon": {
+      "id": "traincraft:firebox_iron"
+    },
+    "title": {
+      "text": "Firebox"
+    },
+    "description": {
+      "text": "Obtain firebox"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "traincraft:firebox_iron"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ]
+}

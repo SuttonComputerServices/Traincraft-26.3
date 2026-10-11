@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:story/root",
+  "display": {
+    "icon": {
+      "id": "traincraft:bogie_wood"
+    },
+    "title": {
+      "text": "Wooden parts"
+    },
+    "description": {
+      "text": "Obtain wooden parts"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "traincraft:bogie_wood"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ]
+}

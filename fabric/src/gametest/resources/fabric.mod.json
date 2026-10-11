@@ -17,7 +17,8 @@
       "traincraft.fabric.LitGameTest",
       "traincraft.fabric.SteamSmallGameTest",
       "traincraft.fabric.ArmorGameTest",
-      "traincraft.fabric.MachineGameTest"
+      "traincraft.fabric.MachineGameTest",
+      "traincraft.fabric.ContentGameTest"
     ]
   }
 }
