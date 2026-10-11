@@ -12,6 +12,8 @@ package traincraft.fabric.registry;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -20,6 +22,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import traincraft.common.registry.RegistryNames;
+import traincraft.fabric.block.FacingBlock;
 
 public final class TCBlocks {
 	private static final Map<String, Block> BLOCKS = new LinkedHashMap<>();
@@ -33,6 +36,10 @@ public final class TCBlocks {
 	}
 
 	/** Hardness, resistance, and light from Content.md. Harvest tools are in data tags. */
+	/** Blocks whose front faces the player on placement (Content.md north/east/south/west states). */
+	public static final Set<String> FACING = Set.of(
+		"assembly_table_1", "assembly_table_2", "assembly_table_3", "bridge_pillar", "generator_diesel", "distillery", "hearth_furnace", "stopper", "switch_stand", "train_workbench", "water_wheel", "wind_mill");
+
 	private static Properties props(String path) {
 		return switch (path) {
 			case "assembly_table_1", "assembly_table_2", "assembly_table_3", "bridge_pillar", "distillery",
@@ -50,7 +57,8 @@ public final class TCBlocks {
 			if (BLOCKS.containsKey(path) || BuiltInRegistries.BLOCK.containsKey(id))
 				throw new IllegalStateException("Duplicate block registration: " + id);
 			ResourceKey<Block> key = ResourceKey.create(Registries.BLOCK, id);
-			BLOCKS.put(path, Registry.register(BuiltInRegistries.BLOCK, key, new Block(props(path).setId(key))));
+			Function<Properties, Block> factory = FACING.contains(path) ? FacingBlock::new : Block::new;
+			BLOCKS.put(path, Registry.register(BuiltInRegistries.BLOCK, key, factory.apply(props(path).setId(key))));
 		}
 	}
 }

@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "traincraft:blocks/stopper"
+    },
+    "facing=south": {
+      "model": "traincraft:blocks/stopper",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "traincraft:blocks/stopper",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "traincraft:blocks/stopper",
+      "y": 90
     }
   }
 }

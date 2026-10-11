@@ -11,7 +11,8 @@
     "fabric-gametest": [
       "traincraft.fabric.RegistrationGameTest",
       "traincraft.fabric.AssetGameTest",
-      "traincraft.fabric.SimpleBlockGameTest"
+      "traincraft.fabric.SimpleBlockGameTest",
+      "traincraft.fabric.FacingGameTest"
     ]
   }
 }

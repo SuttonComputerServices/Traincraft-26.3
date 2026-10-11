@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "traincraft:blocks/switch_stand"
+    },
+    "facing=south": {
+      "model": "traincraft:blocks/switch_stand",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "traincraft:blocks/switch_stand",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "traincraft:blocks/switch_stand",
+      "y": 90
     }
   }
 }
