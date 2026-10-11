@@ -13,7 +13,6 @@ package traincraft.fabric.registry;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -22,7 +21,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import traincraft.common.registry.RegistryNames;
+import traincraft.fabric.block.ContainerBlock;
 import traincraft.fabric.block.FacingBlock;
+import traincraft.fabric.gui.TCBlockMenu;
 
 public final class TCBlocks {
 	private static final Map<String, Block> BLOCKS = new LinkedHashMap<>();
@@ -51,14 +52,25 @@ public final class TCBlocks {
 		};
 	}
 
+	private static Block create(String path, Properties p) {
+		TCBlockMenu.Layout layout = switch (path) {
+			case "distillery" -> TCBlockMenu.DISTILLERY;
+			case "hearth_furnace" -> TCBlockMenu.HEARTH_FURNACE;
+			case "assembly_table_1", "assembly_table_2", "assembly_table_3" -> TCBlockMenu.ASSEMBLY_TABLE;
+			case "train_workbench" -> TCBlockMenu.TRAIN_WORKBENCH;
+			default -> null;
+		};
+		if (layout != null) return new ContainerBlock(p, layout);
+		return FACING.contains(path) ? new FacingBlock(p) : new Block(p);
+	}
+
 	public static void register() {
 		for (String path : RegistryNames.BLOCKS) {
 			Identifier id = Identifier.fromNamespaceAndPath("traincraft", path);
 			if (BLOCKS.containsKey(path) || BuiltInRegistries.BLOCK.containsKey(id))
 				throw new IllegalStateException("Duplicate block registration: " + id);
 			ResourceKey<Block> key = ResourceKey.create(Registries.BLOCK, id);
-			Function<Properties, Block> factory = FACING.contains(path) ? FacingBlock::new : Block::new;
-			BLOCKS.put(path, Registry.register(BuiltInRegistries.BLOCK, key, factory.apply(props(path).setId(key))));
+			BLOCKS.put(path, Registry.register(BuiltInRegistries.BLOCK, key, create(path, props(path).setId(key))));
 		}
 	}
 }
