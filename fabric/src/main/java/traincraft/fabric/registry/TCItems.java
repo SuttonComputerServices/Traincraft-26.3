@@ -38,7 +38,7 @@ public final class TCItems {
 			throw new IllegalStateException("Duplicate item registration: " + id);
 		ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, id);
 		Item.Properties p = new Item.Properties().setId(key);
-		Item item = block ? new BlockItem(TCBlocks.get(path), p.useBlockDescriptionPrefix()) : new Item(p);
+		Item item = block ? new BlockItem(TCBlocks.get(path), p.useBlockDescriptionPrefix()) : new Item(TCArmor.apply(path, p));
 		ITEMS.put(path, Registry.register(BuiltInRegistries.ITEM, key, item));
 	}
 

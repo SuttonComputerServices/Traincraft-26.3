@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "traincraft:ticketman"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "traincraft:ticketman_pants"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "traincraft:composite_suit"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "traincraft:composite_suit_pants"
+      }
+    ]
+  }
+}
