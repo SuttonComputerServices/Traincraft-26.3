@@ -29,18 +29,19 @@ import traincraft.fabric.registry.TCEntities;
 
 public class SteamSmallGameTest {
 	@GameTest
-	public void sneakClickMountsAndPlainClickOpensMenu(GameTestHelper helper) {
+	public void plainClickMountsAndSneakClickOpensMenu(GameTestHelper helper) {
 		SteamSmallEntity loco = helper.spawn(TCEntities.steamSmall(), new BlockPos(1, 2, 1));
 		ServerPlayer player = helper.makeMockServerPlayerInLevel();
 
-		player.setShiftKeyDown(true);
+		helper.assertTrue(loco.isPickable(), Component.literal("locomotive is not pickable, so clicks never reach it"));
+
 		loco.interact(player, InteractionHand.MAIN_HAND, Vec3.ZERO);
-		helper.assertTrue(player.getVehicle() == loco, Component.literal("sneak-click did not mount"));
+		helper.assertTrue(player.getVehicle() == loco, Component.literal("plain click did not mount"));
 
 		player.stopRiding();
-		player.setShiftKeyDown(false);
+		player.setShiftKeyDown(true);
 		loco.interact(player, InteractionHand.MAIN_HAND, Vec3.ZERO);
-		helper.assertTrue(player.containerMenu instanceof SteamSmallMenu, Component.literal("plain click did not open the menu"));
+		helper.assertTrue(player.containerMenu instanceof SteamSmallMenu, Component.literal("sneak-click did not open the menu"));
 		helper.succeed();
 	}
 

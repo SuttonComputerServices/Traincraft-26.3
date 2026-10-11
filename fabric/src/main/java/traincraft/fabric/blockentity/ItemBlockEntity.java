@@ -68,7 +68,7 @@ public class ItemBlockEntity extends BlockEntity implements ExtendedMenuProvider
 		if (burnTime == 0 && !fuel.isEmpty()) {
 			int ticks = FuelRules.burnTicks(BuiltInRegistries.ITEM.getKey(fuel.getItem()).toString());
 			if (ticks > 0) {
-				inventory.removeItem(fuelIndex, 1);
+				FuelConsumption.consumeOne(inventory, fuelIndex);
 				burnTime = maxBurnTime = ticks;
 			}
 		}
@@ -97,7 +97,7 @@ public class ItemBlockEntity extends BlockEntity implements ExtendedMenuProvider
 
 	@Override
 	public Component getDisplayName() {
-		return Component.translatable("block.traincraft." + layout.name());
+		return getBlockState().getBlock().getName();
 	}
 
 	@Override

@@ -47,5 +47,7 @@ public class SimpleBlockGameTest {
 			Component.literal(id + " hardness"));
 		helper.assertTrue(block.getExplosionResistance() == resistance, Component.literal(id + " resistance"));
 		helper.assertTrue(state.getLightEmission() == light, Component.literal(id + " light"));
+		if (id.endsWith("_ore") || id.equals("petrol_ore"))
+			helper.assertTrue(state.requiresCorrectToolForDrops(), Component.literal(id + " drops without the right tool"));
 	}
 }

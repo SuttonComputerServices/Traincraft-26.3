@@ -27,6 +27,7 @@ import net.minecraft.world.phys.Vec3;
 import traincraft.common.fuel.FuelRules;
 import traincraft.common.steam.SteamLocomotiveState;
 import traincraft.fabric.entity.SteamSmallEntity;
+import traincraft.fabric.registry.TCEntities;
 
 /** Fuel, water, and coal storage for the small steam locomotive, laid out as in the 1.12 container. */
 public class SteamSmallMenu extends AbstractContainerMenu {
@@ -94,7 +95,9 @@ public class SteamSmallMenu extends AbstractContainerMenu {
 		type = Registry.register(BuiltInRegistries.MENU, Identifier.fromNamespaceAndPath("traincraft", "steam_small"),
 			new ExtendedMenuType<SteamSmallMenu, Integer>((id, inv, entityId) -> {
 				Entity e = inv.player.level().getEntity(entityId);
-				if (!(e instanceof SteamSmallEntity loco)) throw new IllegalStateException("No steam locomotive with id " + entityId);
+				// Not loaded yet on the client: an empty stand-in keeps the connection alive.
+				SteamSmallEntity loco = e instanceof SteamSmallEntity s ? s
+					: new SteamSmallEntity(TCEntities.steamSmall(), inv.player.level());
 				return new SteamSmallMenu(id, inv, loco);
 			}, ByteBufCodecs.VAR_INT));
 	}

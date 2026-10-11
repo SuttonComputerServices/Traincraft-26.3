@@ -41,6 +41,20 @@ public class ContentGameTest {
 	}
 
 	@GameTest
+	public void everyIdHasATranslationKey(GameTestHelper helper) throws java.io.IOException {
+		String lang;
+		try (var in = ContentGameTest.class.getClassLoader().getResourceAsStream("assets/traincraft/lang/en_us.json")) {
+			lang = new String(in.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+		}
+		for (String id : RegistryNames.BLOCKS)
+			helper.assertTrue(lang.contains("\"block.traincraft." + id + "\""), Component.literal("no block key for " + id));
+		for (String id : RegistryNames.ITEMS)
+			helper.assertTrue(lang.contains("\"item.traincraft." + id + "\""), Component.literal("no item key for " + id));
+		helper.assertTrue(lang.contains("\"entity.traincraft.steam_small\""), Component.literal("no entity key"));
+		helper.succeed();
+	}
+
+	@GameTest
 	public void achievementAdvancementsLoad(GameTestHelper helper) {
 		var advancements = helper.getLevel().getServer().getAdvancements();
 		for (String key : new String[] {"steel", "plastic", "fineCopperWire", "electronicCircuit", "generator", "firebox",

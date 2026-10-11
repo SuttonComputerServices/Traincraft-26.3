@@ -11,6 +11,11 @@
 package traincraft.fabric;
 
 import java.util.Optional;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -47,6 +52,9 @@ public class TraincraftMod implements ModInitializer {
 		TCBlockMenu.register();
 		TCEntities.register();
 		TCSounds.register();
+		for (String ore : new String[] {"copper_ore", "petrol_ore", "ore_oil_sand"})
+			BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES,
+				ResourceKey.create(Registries.PLACED_FEATURE, Identifier.fromNamespaceAndPath("traincraft", ore)));
 		SteamSmallMenu.register();
 		FuelRules.setVanillaLookup(TraincraftMod::vanillaBurnTicks);
 	}

@@ -15,6 +15,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.phys.AABB;
+import traincraft.fabric.blockentity.ItemBlockEntity;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -63,6 +66,29 @@ public class BlockEntityGameTest {
 			TCBlocks.get("distillery").defaultBlockState(), tag, registries);
 		helper.assertTrue(loaded instanceof ItemBlockEntity lbe && lbe.inventory().getItem(0).is(Items.IRON_INGOT),
 			Component.literal("items lost on save and reload"));
+		helper.succeed();
+	}
+
+	@GameTest
+	public void breakingAContainerDropsItsContents(GameTestHelper helper) {
+		ItemBlockEntity be = place(helper, "distillery");
+		BlockPos pos = helper.absolutePos(BlockPos.ZERO);
+		be.inventory().setItem(0, new ItemStack(Items.IRON_INGOT, 3));
+		var state = helper.getLevel().getBlockState(pos);
+		var player = helper.makeMockServerPlayerInLevel();
+		state.getBlock().playerDestroy(helper.getLevel(), player, pos, state, be, ItemStack.EMPTY);
+		boolean dropped = !helper.getLevel().getEntitiesOfClass(ItemEntity.class, new AABB(pos).inflate(2)).isEmpty();
+		helper.assertTrue(dropped, Component.literal("container contents were lost on break"));
+		helper.succeed();
+	}
+
+	@GameTest
+	public void burningLavaLeavesTheBucket(GameTestHelper helper) {
+		ItemBlockEntity be = place(helper, "hearth_furnace");
+		BlockPos pos = helper.absolutePos(BlockPos.ZERO);
+		be.inventory().setItem(0, new ItemStack(Items.LAVA_BUCKET));
+		ItemBlockEntity.serverTick(helper.getLevel(), pos, helper.getLevel().getBlockState(pos), be);
+		helper.assertTrue(be.inventory().getItem(0).is(Items.BUCKET), Component.literal("burned lava did not leave a bucket"));
 		helper.succeed();
 	}
 

@@ -11,7 +11,10 @@
 package traincraft.fabric.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Containers;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -59,6 +62,13 @@ public class ContainerBlock extends FacingBlock implements EntityBlock {
 	@Override
 	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new ItemBlockEntity(TCBlockEntities.type(layout.name()), layout, pos, state);
+	}
+
+	@Override
+	public void playerDestroy(ServerLevel level, ServerPlayer player, BlockPos pos, BlockState state, BlockEntity be, ItemStack tool) {
+		// Items in the block are dropped, not lost. Explosions and other non-player breaks are not covered yet.
+		if (be instanceof ItemBlockEntity ibe) Containers.dropContents(level, pos, ibe.inventory());
+		super.playerDestroy(level, player, pos, state, be, tool);
 	}
 
 	@Override

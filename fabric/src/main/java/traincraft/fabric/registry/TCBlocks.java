@@ -53,8 +53,8 @@ public final class TCBlocks {
 		return switch (path) {
 			case "assembly_table_1", "assembly_table_2", "assembly_table_3", "bridge_pillar" -> Properties.of().strength(3.5f);
 			case "distillery", "hearth_furnace" -> Properties.of().strength(3.5f).lightLevel(TCBlocks::litLight);
-			case "copper_ore", "petrol_ore" -> Properties.of().strength(3.0f, 5.0f);
-			case "ore_oil_sand" -> Properties.of().strength(3.0f);
+			case "copper_ore", "petrol_ore" -> Properties.of().strength(3.0f, 5.0f).requiresCorrectToolForDrops();
+			case "ore_oil_sand" -> Properties.of().strength(3.0f).requiresCorrectToolForDrops();
 			case "lantern" -> Properties.of().strength(1.7f).lightLevel(s -> 14); // 0.98 * 15, rounded down
 			default -> Properties.of().strength(1.7f);
 		};

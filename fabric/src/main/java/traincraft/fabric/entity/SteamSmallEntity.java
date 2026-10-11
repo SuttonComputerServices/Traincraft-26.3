@@ -37,6 +37,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import traincraft.common.fuel.FuelRules;
 import traincraft.common.steam.SteamLocomotiveState;
+import traincraft.fabric.blockentity.FuelConsumption;
 import traincraft.fabric.gui.SteamSmallMenu;
 
 /** Small steam locomotive. Sneak-click mounts it; a plain click opens its fuel and water menu. No driving physics yet. */
@@ -67,6 +68,12 @@ public class SteamSmallEntity extends Entity {
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {}
 
 	@Override
+	public boolean isPickable() {
+		// Entity.isPickable is false by default; without this the crosshair never targets the locomotive.
+		return !isRemoved();
+	}
+
+	@Override
 	protected boolean canAddPassenger(Entity passenger) {
 		// One rider, as the 1.12 seat list had one seat.
 		return getPassengers().isEmpty();
@@ -84,7 +91,7 @@ public class SteamSmallEntity extends Entity {
 		refillBurnSlot();
 		ItemStack burn = inventory.getItem(BURN_SLOT);
 		int nextFuelTicks = burn.isEmpty() ? 0 : FuelRules.burnTicks(itemId(burn));
-		if (state.tickBurn(nextFuelTicks)) inventory.removeItem(BURN_SLOT, 1);
+		if (state.tickBurn(nextFuelTicks)) FuelConsumption.consumeOne(inventory, BURN_SLOT);
 		ItemStack water = inventory.getItem(WATER_SLOT);
 		if (water.is(Items.WATER_BUCKET) && state.addBucket()) inventory.setItem(WATER_SLOT, new ItemStack(Items.BUCKET));
 	}
@@ -107,9 +114,9 @@ public class SteamSmallEntity extends Entity {
 
 	@Override
 	public InteractionResult interact(Player player, InteractionHand hand, Vec3 location) {
-		if (player.isShiftKeyDown()) {
-			// Vanilla refuses to mount while sneaking (canRide), so the sneak-click forces the mount.
-			if (!level().isClientSide()) player.startRiding(this, true, true);
+		// Vanilla dismounts a sneaking rider every tick, so mounting is the plain click and the sneak-click opens the menu.
+		if (!player.isShiftKeyDown()) {
+			if (!level().isClientSide()) player.startRiding(this);
 			return InteractionResult.SUCCESS;
 		}
 		if (!level().isClientSide() && player instanceof ServerPlayer sp) {

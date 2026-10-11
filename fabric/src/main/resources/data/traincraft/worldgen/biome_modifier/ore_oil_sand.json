@@ -1,6 +1,0 @@
-{
-  "type": "minecraft:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": "traincraft:ore_oil_sand",
-  "step": "underground_ores"
-}
