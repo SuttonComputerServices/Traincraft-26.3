@@ -13,6 +13,9 @@
   "entrypoints": {
     "main": [
       "traincraft.fabric.TraincraftMod"
+    ],
+    "client": [
+      "traincraft.fabric.client.TraincraftClient"
     ]
   }
 }

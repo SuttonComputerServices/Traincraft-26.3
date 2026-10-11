@@ -23,7 +23,9 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import traincraft.common.fuel.FuelRules;
+import traincraft.fabric.gui.SteamSmallMenu;
 import traincraft.fabric.gui.TCBlockMenu;
+import traincraft.fabric.registry.TCEntities;
 import traincraft.fabric.registry.TCBlockEntities;
 import traincraft.fabric.registry.TCBlocks;
 import traincraft.fabric.registry.TCItems;
@@ -39,6 +41,8 @@ public class TraincraftMod implements ModInitializer {
 		TCItems.register();
 		TCBlockEntities.register();
 		TCBlockMenu.register();
+		TCEntities.register();
+		SteamSmallMenu.register();
 		FuelRules.setVanillaLookup(TraincraftMod::vanillaBurnTicks);
 	}
 
